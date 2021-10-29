@@ -43,7 +43,7 @@ int main() {
         // Hexa input limit 0 -> 270F
 
         cout << "\n\nPlease choose an operation above (1-6): ";
-        cin >> choiceVal;
+        getline(cin, choiceVal);
 
         if (choiceVal == "1") {
             operationVal[0] = "decimal";
@@ -77,7 +77,7 @@ int main() {
             cout << "\n" << capitalizeFirstLetter(operationVal[0]) << " to " << capitalizeFirstLetter(operationVal[1]) << " conversion...";
             
             cout << "\n\nPlease enter the " << operationVal[0] << " value " << backInfo << ": ";
-            cin >> inputVal;
+            getline(cin, inputVal);
 
             if (inputVal == "X" || inputVal == "x") {
                 bInvalidOption = true;
@@ -95,7 +95,7 @@ int main() {
 
                 do {
                     cout << "\n\nDo you want to enter again (Y/N)? ";
-                    cin >> tryAgainVal;
+                    getline(cin, tryAgainVal);
 
                     if (tryAgainVal == "Y" || tryAgainVal == "y") {
                         bCorrectInput = false;
