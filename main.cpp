@@ -9,12 +9,15 @@ void clearScreen();
 string dec2bin(string decimalInputVal);
 string dec2oct(string decimalInputVal);
 string dec2hex(string decimalInputVal);
-int bin2dec();
-int oct2dec();
-int hex2dec();
+int bin2dec(string binaryInputVal);
+int oct2dec(string octalInputVal);
+int hex2dec(string hexadecimalInputVal);
 
 string capitalizeFirstLetter(string wordString);
 bool validateInput(string inputVal, string choiceVal);
+int raiseToPowerOf(int base, int exponent);
+string trimZeros(string binaryInputVal);
+int checkIfBinary(string binaryInputVal);
 
 string backInfo = "(Press [X] to go to the previous menu)";
 
@@ -96,6 +99,8 @@ int main() {
                     cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2oct(inputVal);
                 } else if (choiceVal == "3") {
                     cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2hex(inputVal);
+                } else if (choiceVal == "4") {
+                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << bin2dec(inputVal);
                 }
 
                 do {
@@ -150,6 +155,20 @@ bool validateInput(string inputVal, string choiceVal) {
     
     if ((choiceVal == "1" || choiceVal == "2" || choiceVal == "3") && bIsNumericVal) {
         return numericalVal >= 0 && numericalVal <= 9999;
+    } else if (choiceVal == "4") {
+        int bIsBinary = checkIfBinary(inputVal);
+
+        if (bIsBinary == 0) {
+            return false;
+        }
+
+        inputVal = trimZeros(inputVal);
+
+        //TODO: Add limit to the binary input value
+
+        return (inputVal.size() > 0 && inputVal.size() <= 14);
+    } else {
+        return false;
     }
 }
 
@@ -234,14 +253,67 @@ string dec2hex(string decimalInputVal) {
     return hexOutput;
 }
 
-int bin2dec() {
+int bin2dec(string binaryInputVal) {
+    int decimalOutput = 0;
+
+    for(int i = 0; i < binaryInputVal.size(); i++) {
+        // we could just use pow() here, but i'm a masochist so...
+        if (binaryInputVal[binaryInputVal.size() - (i + 1)] == '1') {
+            decimalOutput += raiseToPowerOf(2, i);
+        }
+    }
+
+    return decimalOutput;
+}
+
+int oct2dec(string decimalInputVal) {
 
 }
 
-int oct2dec() {
+int hex2dec(string decimalInputVal) {
 
 }
 
-int hex2dec() {
+string trimZeros(string binaryInputVal) {
+    string trimmedInput = "0";
+    int bFirstNonZero = 0;
 
+    for (int i = 0; i < binaryInputVal.size(); i++) {
+        if (bFirstNonZero == 0) {
+            bFirstNonZero = binaryInputVal[i] == '1';
+        }
+
+        if (bFirstNonZero == 1) {
+            trimmedInput += binaryInputVal[i];
+        }
+    }
+
+    return trimmedInput;
+}
+
+int checkIfBinary(string binaryInputVal) {
+    int bIsBinary = 1;
+
+    for(int i = 0; i < binaryInputVal.size(); i++) {
+        if (binaryInputVal[i] != '0' && binaryInputVal[i] != '1') {
+            bIsBinary = 0;
+            break;
+        }
+    }
+    
+    return bIsBinary;
+}
+
+int raiseToPowerOf(int base, int exponent) {
+    int poweredUpVal = 1;
+
+    if (exponent == 0) {
+        return poweredUpVal;
+    }
+
+    for (int i = 1; i <= exponent; i++) {
+        poweredUpVal *= base;
+    }
+
+    return poweredUpVal;
 }
