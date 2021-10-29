@@ -102,8 +102,13 @@ int main() {
                         break;
                     }
 
+                    if (tryAgainVal == "N" || tryAgainVal == "n") {
+                        bCorrectInput = true;
+                        bInvalidOption = true;
+                    }
+
                     clearScreen();
-                } while (tryAgainVal != "N" || tryAgainVal != "n");
+                } while (tryAgainVal != "N" && tryAgainVal != "n");
             } else {
                 bCorrectInput = false;
             }
