@@ -7,7 +7,7 @@ using namespace std;
 void clearScreen();
 
 string dec2bin(string decimalInputVal);
-int dec2oct(string decimalInputVal);
+string dec2oct(string decimalInputVal);
 string dec2hex();
 int bin2dec();
 int oct2dec();
@@ -147,7 +147,7 @@ bool validateInput(string inputVal, string choiceVal) {
         bIsNumericVal = false;
     }
     
-    if (choiceVal == "1" && bIsNumericVal) {
+    if ((choiceVal == "1" || choiceVal == "2" || choiceVal == "3") && bIsNumericVal) {
         return numericalVal > 0 && numericalVal < 9999;
     }
 }
@@ -163,11 +163,7 @@ string dec2bin(string decimalInputVal) {
     do {
         remainder = decimalInputConvertVal % 2;
 
-        if (remainder == 1) {
-            binaryOutput = "1" + binaryOutput;
-        } else {
-            binaryOutput = "0" + binaryOutput;
-        }
+        binaryOutput = to_string(remainder) + binaryOutput;
 
         decimalInputConvertVal /= 2;
     } while(decimalInputConvertVal != 0);
@@ -175,8 +171,26 @@ string dec2bin(string decimalInputVal) {
     return binaryOutput;
 }
 
-int dec2oct(string decimalInputVal) {
+string dec2oct(string decimalInputVal) {
+    string octalOutput;
+    int remainder;
+    int decimalInputConvertVal;
+    
+    octalOutput = "";
+    decimalInputConvertVal = stoi(decimalInputVal);
 
+    do {
+        if (decimalInputConvertVal >= 8) {
+            remainder = decimalInputConvertVal % 8;
+            octalOutput = to_string(remainder) + octalOutput;
+        } else {
+            octalOutput = to_string(decimalInputConvertVal) + octalOutput;
+        }        
+
+        decimalInputConvertVal /= 8;
+    } while(decimalInputConvertVal != 0);
+    
+    return octalOutput;
 }
 
 string dec2hex() {
