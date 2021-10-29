@@ -8,7 +8,7 @@ void clearScreen();
 
 string dec2bin(string decimalInputVal);
 string dec2oct(string decimalInputVal);
-string dec2hex();
+string dec2hex(string decimalInputVal);
 int bin2dec();
 int oct2dec();
 int hex2dec();
@@ -94,6 +94,8 @@ int main() {
                     cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2bin(inputVal);
                 } else if (choiceVal == "2") {
                     cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2oct(inputVal);
+                } else if (choiceVal == "3") {
+                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2hex(inputVal);
                 }
 
                 do {
@@ -117,7 +119,6 @@ int main() {
             }
 
         } while(!bCorrectInput);
-
     } while(bInvalidOption);
 
     cout << "\nThank you for using the Number Conversion program. Goodbye!";
@@ -148,7 +149,7 @@ bool validateInput(string inputVal, string choiceVal) {
     }
     
     if ((choiceVal == "1" || choiceVal == "2" || choiceVal == "3") && bIsNumericVal) {
-        return numericalVal > 0 && numericalVal < 9999;
+        return numericalVal > 0 && numericalVal <= 9999;
     }
 }
 
@@ -193,8 +194,44 @@ string dec2oct(string decimalInputVal) {
     return octalOutput;
 }
 
-string dec2hex() {
+string dec2hex(string decimalInputVal) {
+    string hexOutput;
+    int remainder;
+    int decimalInputConvertVal;
+    
+    hexOutput = "";
+    decimalInputConvertVal = stoi(decimalInputVal);
 
+    do {
+        remainder = decimalInputConvertVal % 16;
+
+        switch(remainder) {
+            case 10: 
+                hexOutput = "A" + hexOutput;
+                break;
+            case 11: 
+                hexOutput = "B" + hexOutput;
+                break;
+            case 12: 
+                hexOutput = "C" + hexOutput;
+                break;
+            case 13: 
+                hexOutput = "D" + hexOutput;
+                break;
+            case 14: 
+                hexOutput = "E" + hexOutput;
+                break;
+            case 15: 
+                hexOutput = "F" + hexOutput;
+                break;
+            default:
+                hexOutput = to_string(remainder) + hexOutput;
+        }              
+
+        decimalInputConvertVal /= 16;
+    } while(decimalInputConvertVal != 0);
+    
+    return hexOutput;
 }
 
 int bin2dec() {
