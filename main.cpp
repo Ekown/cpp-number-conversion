@@ -36,6 +36,7 @@ int main() {
         cout << "\n[4] Binary to Decimal";
         cout << "\n[5] Octal to Decimal";
         cout << "\n[6] Hexadecimal to Decimal";
+        cout << "\n[7] Exit";
 
         // Decimal input limit 0 -> 9999
         // Binary input limit 10011100001111
@@ -63,6 +64,8 @@ int main() {
         } else if (choiceVal == "6") {
             operationVal[0] = "hexadecimal";
             operationVal[1] = "decimal";
+        } else if (choiceVal == "7") {
+            break;
         } else {
             bInvalidOption = true;
             continue;
@@ -116,6 +119,8 @@ int main() {
         } while(!bCorrectInput);
 
     } while(bInvalidOption);
+
+    cout << "\nThank you for using the Number Conversion program. Goodbye!";
 
     cout << "\n";
 
