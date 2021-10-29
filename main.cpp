@@ -149,7 +149,7 @@ bool validateInput(string inputVal, string choiceVal) {
     }
     
     if ((choiceVal == "1" || choiceVal == "2" || choiceVal == "3") && bIsNumericVal) {
-        return numericalVal > 0 && numericalVal <= 9999;
+        return numericalVal >= 0 && numericalVal <= 9999;
     }
 }
 
