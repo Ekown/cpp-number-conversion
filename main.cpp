@@ -136,13 +136,9 @@ bool validateInput(string inputVal, string choiceVal) {
     } catch(exception &err) {
         bIsNumericVal = false;
     }
-
+    
     if (choiceVal == "1" && bIsNumericVal) {
-        int decimalInputVal;
-
-        return decimalInputVal >= 1 && decimalInputVal <= 9999;
-    } else {
-        return false;
+        return numericalVal > 0 && numericalVal < 9999;
     }
 }
 
