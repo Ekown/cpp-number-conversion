@@ -157,6 +157,7 @@ bool validateInput(string inputVal, string choiceVal) {
         return numericalVal >= 0 && numericalVal <= 9999;
     } else if (choiceVal == "4") {
         int bIsBinary = checkIfBinary(inputVal);
+        long long int binaryVal = stoll(inputVal);
 
         if (bIsBinary == 0) {
             return false;
@@ -164,9 +165,7 @@ bool validateInput(string inputVal, string choiceVal) {
 
         inputVal = trimZeros(inputVal);
 
-        //TODO: Add limit to the binary input value
-
-        return (inputVal.size() > 0 && inputVal.size() <= 14);
+        return (inputVal.size() > 0 && inputVal.size() <= 14) && (binaryVal >= 0 && binaryVal <= 10011100001111);
     } else {
         return false;
     }
@@ -275,8 +274,12 @@ int hex2dec(string decimalInputVal) {
 }
 
 string trimZeros(string binaryInputVal) {
-    string trimmedInput = "0";
+    string trimmedInput = "";
     int bFirstNonZero = 0;
+    
+    if (binaryInputVal.size() == 1) {
+        trimmedInput = "0";
+    }
 
     for (int i = 0; i < binaryInputVal.size(); i++) {
         if (bFirstNonZero == 0) {
