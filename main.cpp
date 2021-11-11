@@ -101,6 +101,8 @@ int main() {
                     cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2hex(inputVal);
                 } else if (choiceVal == "4") {
                     cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << bin2dec(inputVal);
+                } else if (choiceVal == "5") {
+                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << oct2dec(inputVal);
                 }
 
                 do {
@@ -268,8 +270,16 @@ int bin2dec(string binaryInputVal) {
     return decimalOutput;
 }
 
-int oct2dec(string decimalInputVal) {
+int oct2dec(string octalInputVal) {
+    int octalOutput = 0;
+    string currentOctalDigit;
 
+    for(int i = 0; i < octalInputVal.size(); i++) {
+        currentOctalDigit = octalInputVal[octalInputVal.size() - (i + 1)];
+        octalOutput += (stoi(currentOctalDigit) * raiseToPowerOf(8, i));
+    }
+
+    return octalOutput;
 }
 
 int hex2dec(string decimalInputVal) {
