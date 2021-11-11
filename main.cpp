@@ -1,5 +1,5 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 #include <stdio.h>
 
 using namespace std;
@@ -17,6 +17,7 @@ string capitalizeFirstLetter(string wordString);
 bool validateInput(string inputVal, string choiceVal);
 int raiseToPowerOf(int base, int exponent);
 string trimZeros(string binaryInputVal);
+int checkIfDecimal(string decimalInputVal);
 int checkIfBinary(string binaryInputVal);
 
 string backInfo = "(Press [X] to go to the previous menu)";
@@ -156,7 +157,7 @@ bool validateInput(string inputVal, string operationVal) {
     }
     
     if ((operationVal == "decimal") && bIsNumericVal) {
-        return numericalVal >= 0 && numericalVal <= 9999;
+        return (numericalVal >= 0 && numericalVal <= 9999) && checkIfDecimal(inputVal);
     } else if (operationVal == "binary") {
         int bIsBinary = checkIfBinary(inputVal);
         long long int binaryVal = stoll(inputVal);
@@ -307,6 +308,22 @@ string trimZeros(string binaryInputVal) {
     }
 
     return trimmedInput;
+}
+
+int checkIfDecimal(string decimalInputVal) {
+    int bIsDecimal = 1;
+    string currentDecimalDigit;
+
+    try {
+        for(int i = 0; i < decimalInputVal.size(); i++) {
+            currentDecimalDigit = decimalInputVal[i];
+            stoi(currentDecimalDigit);
+        }
+    } catch (exception &err) {
+        bIsDecimal = 0;
+    }
+    
+    return bIsDecimal;
 }
 
 int checkIfBinary(string binaryInputVal) {
