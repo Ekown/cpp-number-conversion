@@ -254,11 +254,14 @@ string dec2hex(string decimalInputVal) {
 
 int bin2dec(string binaryInputVal) {
     int decimalOutput = 0;
+    string currentBinaryDigit;
 
-    for(int i = 0; i < binaryInputVal.size(); i++) {
+    for(int i = 0; i < binaryInputVal.size(); i++) {        
+        currentBinaryDigit = binaryInputVal[binaryInputVal.size() - (i + 1)];
+
         // we could just use pow() here, but i'm a masochist so...
-        if (binaryInputVal[binaryInputVal.size() - (i + 1)] == '1') {
-            decimalOutput += raiseToPowerOf(2, i);
+        if (currentBinaryDigit == "1") {
+            decimalOutput += (stoi(currentBinaryDigit) * raiseToPowerOf(2, i));
         }
     }
 
