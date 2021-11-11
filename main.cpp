@@ -5,18 +5,20 @@
 using namespace std;
 
 void clearScreen();
+string capitalizeFirstLetter(string wordString);
 
 string dec2bin(string decimalInputVal);
 string dec2oct(string decimalInputVal);
 string dec2hex(string decimalInputVal);
+
 int bin2dec(string binaryInputVal);
 int oct2dec(string octalInputVal);
 int hex2dec(string hexadecimalInputVal);
 
-string capitalizeFirstLetter(string wordString);
 bool validateInput(string inputVal, string choiceVal);
 int raiseToPowerOf(int base, int exponent);
 string trimZeros(string binaryInputVal);
+
 int checkIfDecimal(string decimalInputVal);
 int checkIfBinary(string binaryInputVal);
 int checkIfOctal(string octalInputVal);
@@ -95,16 +97,20 @@ int main() {
             if (validateInput(inputVal, operationVal[0])) {
                 string tryAgainVal;
 
+                cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is ";
+
                 if (choiceVal == "1") {
-                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2bin(inputVal);
+                    cout << dec2bin(inputVal);
                 } else if (choiceVal == "2") {
-                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2oct(inputVal);
+                    cout << dec2oct(inputVal);
                 } else if (choiceVal == "3") {
-                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << dec2hex(inputVal);
+                    cout << dec2hex(inputVal);
                 } else if (choiceVal == "4") {
-                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << bin2dec(inputVal);
+                    cout << bin2dec(inputVal);
                 } else if (choiceVal == "5") {
-                    cout << "\nThe " << operationVal[1] << " value of " << inputVal << " is " << oct2dec(inputVal);
+                    cout << oct2dec(inputVal);
+                } else if (choiceVal == "6") {
+                    cout << hex2dec(inputVal);
                 }
 
                 do {
