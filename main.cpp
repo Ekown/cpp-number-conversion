@@ -19,6 +19,7 @@ int raiseToPowerOf(int base, int exponent);
 string trimZeros(string binaryInputVal);
 int checkIfDecimal(string decimalInputVal);
 int checkIfBinary(string binaryInputVal);
+int checkIfOctal(string octalInputVal);
 
 string backInfo = "(Press [X] to go to the previous menu)";
 
@@ -169,8 +170,8 @@ bool validateInput(string inputVal, string operationVal) {
         inputVal = trimZeros(inputVal);
 
         return (inputVal.size() > 0 && inputVal.size() <= 14) && (binaryVal >= 0 && binaryVal <= 10011100001111);
-    } else if (operationVal == "octal") {
-
+    } else if (operationVal == "octal" && bIsNumericVal) {
+        return (numericalVal >= 0 && numericalVal <= 23417) && checkIfOctal(inputVal);
     } else {
         return false;
     }
@@ -337,6 +338,19 @@ int checkIfBinary(string binaryInputVal) {
     }
     
     return bIsBinary;
+}
+
+int checkIfOctal(string octalInputVal) {
+    int bIsOctal = 1;
+
+    for(int i = 0; i < octalInputVal.size(); i++) {
+        if (octalInputVal[i] == '8' || octalInputVal[i] == '9') {
+            bIsOctal = 0;
+            break;
+        }
+    }
+    
+    return bIsOctal;
 }
 
 int raiseToPowerOf(int base, int exponent) {
