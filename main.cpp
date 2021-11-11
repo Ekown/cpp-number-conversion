@@ -90,7 +90,7 @@ int main() {
                 break;
             }
 
-            if (validateInput(inputVal, choiceVal)) {
+            if (validateInput(inputVal, operationVal[0])) {
                 string tryAgainVal;
 
                 if (choiceVal == "1") {
@@ -145,7 +145,7 @@ string capitalizeFirstLetter(string wordString) {
     return wordString;
 }
 
-bool validateInput(string inputVal, string choiceVal) {
+bool validateInput(string inputVal, string operationVal) {
     int numericalVal;
     bool bIsNumericVal = true;
 
@@ -155,9 +155,9 @@ bool validateInput(string inputVal, string choiceVal) {
         bIsNumericVal = false;
     }
     
-    if ((choiceVal == "1" || choiceVal == "2" || choiceVal == "3") && bIsNumericVal) {
+    if ((operationVal == "decimal") && bIsNumericVal) {
         return numericalVal >= 0 && numericalVal <= 9999;
-    } else if (choiceVal == "4") {
+    } else if (operationVal == "binary") {
         int bIsBinary = checkIfBinary(inputVal);
         long long int binaryVal = stoll(inputVal);
 
@@ -168,6 +168,8 @@ bool validateInput(string inputVal, string choiceVal) {
         inputVal = trimZeros(inputVal);
 
         return (inputVal.size() > 0 && inputVal.size() <= 14) && (binaryVal >= 0 && binaryVal <= 10011100001111);
+    } else if (operationVal == "octal") {
+
     } else {
         return false;
     }
